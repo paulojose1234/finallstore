@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FinalStore — Produtos digitais para gamers</title>
+<style>
+:root{--bg:#07070b;--bg2:#0e0e16;--card:#12121c;--line:#242436;--tx:#eceef7;--mu:#8b8fa8;--p:#8b5cf6;--b:#3b82f6;--g:linear-gradient(135deg,#8b5cf6,#3b82f6);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--tx);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;background-image:radial-gradient(900px 400px at 80% -10%,rgba(139,92,246,.18),transparent),radial-gradient(700px 400px at 0% 10%,rgba(59,130,246,.12),transparent);background-repeat:no-repeat}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;backdrop-filter:blur(14px);background:rgba(7,7,11,.75);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;letter-spacing:.3px}
+.logo i{width:30px;height:30px;border-radius:9px;background:var(--g);display:grid;place-items:center;font-style:normal;font-size:.95rem;box-shadow:0 0 18px rgba(139,92,246,.6)}
+.logo span{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{display:flex;gap:6px}
+nav a{padding:8px 14px;border-radius:10px;color:var(--mu);font-size:.93rem;transition:.2s}
+nav a:hover,nav a.on{color:var(--tx);background:rgba(139,92,246,.14)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:12px;font-weight:600;background:var(--g);color:#fff;box-shadow:0 8px 28px -8px rgba(139,92,246,.7);transition:.25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 34px -6px rgba(139,92,246,.9)}
+.btn.o{background:transparent;border:1px solid var(--line);box-shadow:none}
+.btn.o:hover{border-color:var(--p);background:rgba(139,92,246,.1)}
+.btn[disabled]{opacity:.4;pointer-events:none}
+main{flex:1}
+.view{animation:in .5s ease both}
+@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hero{padding:84px 0 56px;text-align:center}
+.tag{display:inline-block;padding:6px 14px;border:1px solid var(--line);border-radius:99px;font-size:.8rem;color:var(--mu);background:rgba(18,18,28,.7);margin-bottom:22px}
+.tag b{color:var(--p)}
+h1{font-size:clamp(2rem,5.5vw,3.7rem);line-height:1.1;letter-spacing:-1px;max-width:760px;margin:0 auto 18px}
+h1 em{font-style:normal;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--mu);max-width:520px;margin:0 auto 30px}
+.stats{display:flex;justify-content:center;gap:34px;margin-top:44px;flex-wrap:wrap;color:var(--mu);font-size:.85rem}
+.stats b{display:block;color:var(--tx);font-size:1.35rem}
+section{padding:40px 0}
+.sh{display:flex;justify-content:space-between;align-items:end;margin-bottom:22px;gap:12px}
+h2{font-size:1.5rem;letter-spacing:-.4px}
+.sh a{color:var(--p);font-size:.9rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:.3s;cursor:pointer}
+.card:hover{transform:translateY(-6px);border-color:rgba(139,92,246,.6);box-shadow:0 18px 40px -16px rgba(139,92,246,.5)}
+.art{aspect-ratio:16/10;display:grid;place-items:center;font-size:3.4rem;position:relative;overflow:hidden}
+.art::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 20%,rgba(255,255,255,.18),transparent 50%)}
+.art span{filter:drop-shadow(0 6px 18px rgba(0,0,0,.5));z-index:1;transition:.4s}
+.card:hover .art span{transform:scale(1.15) rotate(-4deg)}
+.hot{position:absolute;top:10px;left:10px;z-index:2;font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:99px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.2)}
+.cb{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.cb h3{font-size:1.02rem}
+.cb p{color:var(--mu);font-size:.86rem;flex:1}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.price{font-weight:800;font-size:1.15rem}
+.st{font-size:.74rem;display:flex;align-items:center;gap:6px;color:var(--mu)}
+.st:before{content:"";width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e}
+.st.off:before{background:#ef4444;box-shadow:0 0 8px #ef4444}
+.card .btn{width:100%;padding:10px;font-size:.9rem}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.chip{padding:9px 16px;border-radius:99px;background:var(--card);border:1px solid var(--line);color:var(--mu);font-size:.88rem;transition:.2s}
+.chip:hover{color:var(--tx)}
+.chip.on{background:var(--g);color:#fff;border-color:transparent}
+.pg{padding:40px 0 20px}
+.pg h1{font-size:2rem;margin:0 0 8px;text-align:left}
+.pg>.wrap>p{color:var(--mu);margin-bottom:24px}
+.crumb{color:var(--mu);font-size:.85rem;margin:28px 0 18px;display:inline-block}
+.crumb:hover{color:var(--tx)}
+.pd{display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:start}
+.main-art{border-radius:18px;border:1px solid var(--line);aspect-ratio:16/11;font-size:6rem}
+.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.thumbs .art{border-radius:12px;border:2px solid var(--line);font-size:1.6rem;cursor:pointer;transition:.2s}
+.thumbs .art.on,.thumbs .art:hover{border-color:var(--p)}
+.pd h1{font-size:2.1rem;margin:10px 0}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:18px}
+.box h3{font-size:.95rem;margin-bottom:10px}
+.box ul{list-style:none;display:grid;gap:7px;color:var(--mu);font-size:.9rem}
+.box li:before{content:"✓ ";color:var(--p);font-weight:700}
+.box.r li:before{content:"› "}
+.buy{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.buy .price{font-size:1.8rem}
+.desc{color:var(--mu)}
+.help{text-align:center;padding:48px 24px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(135deg,rgba(139,92,246,.14),rgba(59,130,246,.08));position:relative;overflow:hidden}
+.help h2{font-size:1.8rem;margin-bottom:10px}
+.help p{color:var(--mu);max-width:480px;margin:0 auto 24px}
+.sup{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:20px}
+.sup div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;font-size:.88rem;color:var(--mu)}
+.sup b{display:block;color:var(--tx);margin-bottom:4px}
+footer{border-top:1px solid var(--line);margin-top:50px;padding:30px 0;background:var(--bg2)}
+.ft{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+.fl{display:flex;gap:18px;flex-wrap:wrap;color:var(--mu);font-size:.88rem}
+.fl a:hover{color:var(--tx)}
+.copy{color:var(--mu);font-size:.82rem;margin-top:6px}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);opacity:0;background:var(--card);border:1px solid var(--p);padding:12px 20px;border-radius:12px;box-shadow:0 10px 40px rgba(139,92,246,.4);transition:.3s;z-index:40;font-size:.9rem;max-width:90%}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+.cartb{position:relative;margin-left:4px;padding:8px 12px;border-radius:10px;background:rgba(139,92,246,.14);color:var(--tx);border:1px solid var(--line);transition:.2s}
+.cartb:hover{border-color:var(--p)}
+.cartb b{position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;border-radius:9px;background:var(--g);font-size:.7rem;display:grid;place-items:center;padding:0 4px}
+.search input{width:100%;max-width:420px;padding:12px 16px;margin-bottom:18px;border-radius:12px;background:var(--card);border:1px solid var(--line);color:var(--tx);font:inherit;outline:0;transition:.2s}
+.search input:focus{border-color:var(--p);box-shadow:0 0 0 3px rgba(139,92,246,.2)}
+#ov{position:fixed;inset:0;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:.3s;z-index:30}
+#ov.open{opacity:1;pointer-events:auto}
+#dr{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:var(--bg2);border-left:1px solid var(--line);z-index:31;transform:translateX(100%);transition:.35s;display:flex;flex-direction:column;padding:calc(20px + env(safe-area-inset-top,0px)) 20px calc(20px + env(safe-area-inset-bottom,0px))}
+#dr.open{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.dh button{background:none;color:var(--mu);font-size:1.2rem}
+#ci{flex:1;overflow-y:auto;display:grid;gap:12px;align-content:start}
+.ci{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px}
+.ci .art{width:56px;aspect-ratio:1;font-size:1.5rem;border-radius:10px}
+.q{display:flex;align-items:center;gap:10px;margin-top:4px;font-size:.9rem}
+.q button{width:24px;height:24px;border-radius:7px;background:var(--line);color:var(--tx)}
+.x{background:none;color:var(--mu)}
+.tot{display:flex;justify-content:space-between;margin:16px 0 12px;font-size:1.1rem;font-weight:700}
+@media(max-width:760px){.pd{grid-template-columns:1fr}.hero{padding-top:56px}nav a{padding:8px 9px;font-size:.84rem}.logo span{font-size:1rem}.nav{height:58px}}
+@media(max-width:420px){.logo span{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="logo" href="#/"><i>⚡</i><span>FinalStore</span></a>
+<nav><a href="#/" data-r="home">Início</a><a href="#/produtos" data-r="produtos">Produtos</a><a href="#/suporte" data-r="suporte">Suporte</a><a href="#" class="dc" target="_blank" rel="noopener">Discord</a><button class="cartb" onclick="openCart()" aria-label="Carrinho">🛒<b id="cc">0</b></button></nav>
+</div></header>
+<main><div class="wrap view" id="app"></div></main>
+<footer><div class="wrap ft">
+<div><a class="logo" href="#/"><i>⚡</i><span>FinalStore</span></a><p class="copy">© 2026 FinalStore. Todos os direitos reservados.</p></div>
+<div class="fl"><a href="#/termos">Termos de uso</a><a href="#/privacidade">Política de privacidade</a><a href="#/suporte">Suporte</a><a href="#" class="dc">Discord</a></div>
+</div></footer>
+<div id="ov" onclick="openCart(false)"></div>
+<aside id="dr"><div class="dh"><h2>🛒 Carrinho</h2><button onclick="openCart(false)" aria-label="Fechar">✕</button></div><div id="ci"></div><div class="tot"><span>Total</span><span id="ct"></span></div><button class="btn" id="ck" onclick="checkout()">Finalizar compra</button></aside>
+<div id="toast"></div>
+<script>
+const DISCORD="https://discord.gg/seu-convite";
+const P=[
+{id:"neon-rush",n:"Neon Rush Key",c:"games",i:"🏎️",h:270,d:"Corrida arcade futurista com multiplayer online.",f:299.9,pr:89.9,ok:1,hot:1,desc:"Chave digital de Neon Rush para PC. Corridas em alta velocidade, customização completa de veículos e modo online competitivo.",feat:["Jogo completo","Atualizações incluídas","Modo multiplayer","Trilha sonora digital"],req:["Windows 10 64-bit","Intel i5 / Ryzen 5","8 GB RAM","GTX 1050 ou superior"]},
+{id:"shadow-realm",n:"Shadow Realm",c:"games",i:"⚔️",h:230,d:"RPG de ação sombrio com mundo aberto.",pr:129.9,ok:1,hot:0,desc:"Explore um mundo aberto repleto de segredos, chefes desafiadores e decisões que mudam a história.",feat:["Campanha de 40h+","DLC inicial incluso","Suporte a controle","Salvamento em nuvem"],req:["Windows 10/11","Intel i5 / Ryzen 5","16 GB RAM","RTX 2060 ou superior"]},
+{id:"pixel-arena",n:"Pixel Arena",c:"games",i:"👾",h:310,d:"Battle royale retrô leve e competitivo.",pr:39.9,ok:0,hot:0,desc:"Partidas rápidas de 10 minutos com visual retrô e ranking sazonal.",feat:["Passe de batalha básico","Ranking global","Crossplay"],req:["Windows 8+","4 GB RAM","Placa integrada"]},
+{id:"conta-roblox",n:"Conta Roblox",c:"games",i:"🚗",h:15,d:"Conta usada somente no Driving Empire.",pr:30,ok:1,hot:0,desc:"Conta Roblox pronta para uso. Biografia: somente o jogo Driving Empire foi jogado nesta conta.",feat:["Jogada somente no Driving Empire","Dados de acesso entregues após o pagamento","Suporte no Discord"],req:["Roblox instalado","Windows, macOS, Android ou iOS"]},
+{id:"fps-boost",n:"FPS Boost Pro",c:"ferramentas",i:"🚀",h:215,d:"Otimizador que libera desempenho para jogos.",pr:49.9,ok:1,hot:1,desc:"Reduz processos em segundo plano, ajusta energia e prioriza recursos para o jogo em execução.",feat:["Perfis por jogo","Limpeza de cache","Monitor em tempo real","Licença vitalícia"],req:["Windows 10/11","2 GB RAM","100 MB livres"]},
+{id:"net-ping",n:"NetPing Optimizer",c:"ferramentas",i:"📡",h:195,d:"Menos latência e conexão mais estável.",pr:34.9,ok:1,hot:0,desc:"Analisa rotas, escolhe o melhor DNS e reduz o ping em jogos online.",feat:["Teste de latência","DNS automático","Painel simples"],req:["Windows 10/11","Conexão com internet"]},
+{id:"stream-kit",n:"Stream Overlay Kit",c:"software",i:"🎬",h:290,d:"Pacote de overlays e alertas para streamers.",pr:59.9,ok:1,hot:1,desc:"Overlays animados, alertas e cenas prontas para OBS com identidade neon.",feat:["20+ overlays","Alertas animados","Guia de instalação","Uso comercial"],req:["OBS Studio 28+","Windows / macOS"]},
+{id:"clean-sys",n:"CleanSys Suite",c:"software",i:"🧹",h:250,d:"Limpeza e manutenção completa do PC.",pr:69.9,ok:1,hot:0,desc:"Remove arquivos inúteis, gerencia inicialização e mantém seu PC leve e organizado.",feat:["Limpeza profunda","Gerenciador de startup","Agendamento","1 ano de atualizações"],req:["Windows 10/11","4 GB RAM"]},
+{id:"vpn-shield",n:"Shield VPN 12m",c:"software",i:"🛡️",h:205,d:"VPN rápida para jogar e navegar com segurança.",pr:79.9,ok:0,hot:0,desc:"Assinatura de 12 meses com servidores otimizados para jogos e proteção de privacidade.",feat:["Servidores globais","Até 5 dispositivos","Sem registro de logs"],req:["Windows, macOS, Android, iOS"]}
+];
+const CATS=[["todos","Todos"],["games","🎮 Games"],["ferramentas","💻 Ferramentas"],["software","🛠️ Software"],["hot","🔥 Mais vendidos"]];
+const $=s=>document.querySelector(s),app=$("#app");
+const money=v=>"R$ "+v.toLocaleString("pt-BR",{minimumFractionDigits:2});
+const bg=(h,v=0)=>`background:linear-gradient(${135+v*50}deg,hsl(${h+v*25} 70% 22%),hsl(${h+60} 80% 10%))`;
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("show"),2600)}
+function card(p){return `<div class="card" onclick="location.hash='#/produto/${p.id}'">
+<div class="art" style="${bg(p.h)}">${p.hot?'<div class="hot">🔥 Top</div>':""}<span>${p.i}</span></div>
+<div class="cb"><div class="row"><h3>${p.n}</h3></div><p>${p.d}</p>
+<div class="row"><span class="price">${money(p.pr)}</span><span class="st ${p.ok?"":"off"}">${p.ok?"Disponível":"Indisponível"}</span></div>
+<button class="btn" ${p.ok?"":"disabled"} onclick="event.stopPropagation();buy('${p.id}')">Comprar agora</button></div></div>`}
+let Q="",CK="todos",C={};
+const esc=s=>s.replace(/[&<>"]/g,c=>"&#"+c.charCodeAt(0)+";");
+try{C=JSON.parse(localStorage.getItem("fs-cart")||"{}")}catch(e){}
+C=Object.fromEntries(Object.entries(C).filter(([id])=>P.some(p=>p.id==id&&p.ok)));
+function list(){const q=Q.trim().toLowerCase();let L=CK=="todos"?P:CK=="hot"?P.filter(p=>p.hot):P.filter(p=>p.c==CK);
+if(q)L=L.filter(p=>(p.n+" "+p.d).toLowerCase().includes(q));
+return L.length?L.map(card).join(""):`<p class="desc">Nenhum produto encontrado para "${esc(Q)}".</p>`}
+function fill(){$("#pg").innerHTML=list()}
+function buy(id){const p=P.find(x=>x.id===id);if(!p||!p.ok)return;C[id]=(C[id]||0)+1;upd();toast("🛒 "+p.n+" adicionado ao carrinho")}
+function qty(id,d){C[id]=(C[id]||0)+d;if(C[id]<=0)delete C[id];upd()}
+function openCart(o=true){$("#dr").classList.toggle("open",o);$("#ov").classList.toggle("open",o)}
+function upd(){try{localStorage.setItem("fs-cart",JSON.stringify(C))}catch(e){}
+const ids=Object.keys(C),n=ids.reduce((s,i)=>s+C[i],0);$("#cc").textContent=n;$("#cc").style.display=n?"":"none";
+let t=0;$("#ci").innerHTML=ids.length?ids.map(id=>{const p=P.find(x=>x.id==id);t+=p.pr*C[id];return `<div class="ci"><div class="art" style="${bg(p.h)}"><span>${p.i}</span></div><div><b>${p.n}</b><div class="desc">${money(p.pr)}</div><div class="q"><button onclick="qty('${id}',-1)">−</button>${C[id]}<button onclick="qty('${id}',1)">+</button></div></div><button class="x" onclick="qty('${id}',-C['${id}'])" aria-label="Remover">✕</button></div>`}).join(""):`<p class="desc" style="text-align:center;padding:40px 0">Seu carrinho está vazio.</p>`;
+$("#ct").textContent=money(t);$("#ck").disabled=!ids.length}
+function checkout(){toast("Checkout em breve: conecte seu gateway de pagamento.")}
+upd();
+function help(){return `<div class="help"><h2>Precisa de ajuda?</h2><p>Nossa equipe está disponível para ajudar você com dúvidas sobre produtos, pagamentos e pedidos.</p><a class="btn dc" href="${DISCORD}" target="_blank" rel="noopener">Entrar no Discord</a></div>`}
+const V={
+home(){return `<div class="hero"><span class="tag"><b>●</b> Entrega digital imediata</span>
+<h1>Produtos digitais para <em>elevar sua experiência.</em></h1>
+<p>Games, softwares e ferramentas para PC com entrega rápida e suporte de verdade.</p>
+<a class="btn" href="#/produtos">Ver produtos →</a>
+<div class="stats"><div><b>+5.000</b>pedidos entregues</div><div><b>24/7</b>suporte no Discord</div><div><b>Instantânea</b>entrega digital</div></div></div>
+<section><div class="sh"><h2>🔥 Mais vendidos</h2><a href="#/produtos">Ver todos →</a></div><div class="grid">${P.filter(p=>p.hot).map(card).join("")}</div></section>
+<section><div class="sh"><h2>Categorias</h2></div><div class="grid">${CATS.slice(1,4).map(([k,l])=>`<a class="card" href="#/produtos/${k}"><div class="cb"><h3>${l}</h3><p>${P.filter(p=>p.c==k).length} produtos disponíveis</p></div></a>`).join("")}</div></section>
+<section>${help()}</section>`},
+produtos(k="todos"){CK=k;
+return `<div class="pg"><h1>Produtos</h1><p>Escolha uma categoria e encontre o que você precisa.</p>
+<div class="search"><input type="search" placeholder="🔎 Buscar produtos..." value="${esc(Q)}" oninput="Q=this.value;fill()"></div>
+<div class="chips">${CATS.map(([a,l])=>`<a class="chip ${a==k?"on":""}" href="#/produtos/${a}">${l}</a>`).join("")}</div>
+<div class="grid" id="pg">${list()}</div></div>`},
+produto(id){const p=P.find(x=>x.id==id);if(!p)return V.produtos();
+return `<a class="crumb" href="#/produtos">← Voltar aos produtos</a>
+<div class="pd"><div><div class="art main-art" id="ma" style="${bg(p.h)}"><span>${p.i}</span></div>
+<div class="thumbs">${[0,1,2].map(v=>`<div class="art ${v?"":"on"}" style="${bg(p.h,v)}" onclick="pick(this,'${bg(p.h,v)}')"><span>${p.i}</span></div>`).join("")}</div></div>
+<div><span class="st ${p.ok?"":"off"}">${p.ok?"Disponível":"Indisponível"}</span><h1>${p.n}</h1><p class="desc">${p.desc}</p>
+<div class="box"><div class="buy"><div>${p.f?`<s style="color:var(--mu);font-size:.85rem">${money(p.f)}</s><br>`:""}<span class="price">${money(p.pr)}</span></div>
+<button class="btn" ${p.ok?"":"disabled"} onclick="buy('${p.id}')">Comprar agora</button></div></div>
+<div class="box"><h3>Recursos incluídos</h3><ul>${p.feat.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+<div class="box r"><h3>Requisitos</h3><ul>${p.req.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+<div class="box"><h3>⚡ Informações de entrega</h3><p class="desc" style="font-size:.9rem">Entrega digital automática após a confirmação do pagamento. Você recebe chave ou link por e-mail e na área de pedidos. Dúvidas? Fale com o suporte no Discord.</p></div></div></div>`},
+suporte(){return `<div class="pg"><h1>Suporte</h1><p>Estamos aqui para resolver qualquer problema.</p>${help()}
+<div class="sup"><div><b>📦 Pedidos</b>Acompanhe entrega e ativação do seu produto.</div><div><b>💳 Pagamentos</b>Dúvidas sobre Pix, cartão e reembolso.</div><div><b>🛠️ Técnico</b>Ajuda com instalação, requisitos e erros.</div></div></div>`},
+termos(){return `<div class="pg"><h1>Termos de uso</h1><p>Ao comprar na FinalStore, você concorda em usar os produtos digitais de acordo com as licenças de cada item. Produtos digitais entregues e ativados não são reembolsáveis, exceto em caso de defeito comprovado. Edite este texto com seus termos oficiais.</p></div>`},
+privacidade(){return `<div class="pg"><h1>Política de privacidade</h1><p>Coletamos apenas os dados necessários para processar pedidos e entregar seus produtos. Não vendemos suas informações. Edite este texto com sua política oficial.</p></div>`}
+};
+function route(){const [,r="",a]=location.hash.slice(1).split("/");const k=r||"home";
+app.classList.remove("view");void app.offsetWidth;app.classList.add("view");
+if(k!="produtos")Q="";
+app.innerHTML=(V[k]||V.home)(a);
+document.querySelectorAll("nav a[data-r]").forEach(e=>e.classList.toggle("on",e.dataset.r==(k=="produto"?"produtos":k)));
+document.querySelectorAll(".dc").forEach(e=>{e.href=DISCORD;e.target="_blank";e.rel="noopener"});
+scrollTo(0,0)}
+function pick(el,s){$("#ma").setAttribute("style",s);document.querySelectorAll(".thumbs .art").forEach(x=>x.classList.remove("on"));el.classList.add("on")}
+addEventListener("hashchange",route);route();
+</script>
+</body>
+</html>
